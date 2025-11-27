@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -v
 
 os=$(uname -s)
 
