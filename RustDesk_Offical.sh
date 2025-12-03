@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Assign a random value to the password variable
-rustdesk_pw=$("iamgay")
+rustdesk_pw=("iamgay")
 
 # Get your config string from your Web portal and Fill Below
 rustdesk_cfg="9JSPn5mb6V1ShpUd1ZncUNWQ4R3RHNXTo1UMzdna4AHRx50ZHNTRF5UeMpnNjJiOikXZrJCLiIiOikGchJCLiITNuQDNuMTOucDNxIiOikXYsVmciwiIyUjL0QjLzkjL3QTMiojI0N3boJye"
@@ -59,10 +59,14 @@ fi
 
 echo "Installing RustDesk"
 if [ "${ID}" = "debian" ] || [ "$OS" = "Ubuntu" ] || [ "$OS" = "Debian" ] || [ "${UPSTREAM_ID}" = "ubuntu" ] || [ "${UPSTREAM_ID}" = "debian" ]; then
-    wget https://github.com/rustdesk/rustdesk/releases/download/1.2.6/rustdesk-1.2.6-x86_64.deb
-    apt-get install -fy ./rustdesk-1.2.6-x86_64.deb > null
+    url=$(curl -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | grep -o '"browser_download_url": *"[^"]*\x86_64.deb"' | sed 's/"browser_download_url": "//;s/"//g')
+    packagename=${url##*/}
+    wget $url
+    apt-get install -fy ./$packagename > null
 elif [ "$OS" = "CentOS" ] || [ "$OS" = "RedHat" ] || [ "$OS" = "Fedora Linux" ] || [ "${UPSTREAM_ID}" = "rhel" ] || [ "$OS" = "Almalinux" ] || [ "$OS" = "Rocky*" ] ; then
-    wget https://github.com/rustdesk/rustdesk/releases/download/1.2.6/rustdesk-1.2.6-0.x86_64.rpm
+    url=$(curl -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | grep -o '"browser_download_url": *"[^"]*\x86_64.rpm"' | sed 's/"browser_download_url": "//;s/"//g')
+    packagename=${url##*/}
+    wget $url
     yum localinstall ./rustdesk-1.2.6-0.x86_64.rpm -y > null
 else
     echo "Unsupported OS"
