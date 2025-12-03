@@ -47,4 +47,3 @@ esac
 #Arch: curl -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | contains("x86_64.pkg.tar.zst")) | .browser_download_url'
 
 #Mac: curl -s https://api.github.com/repos/rustdesk/rustdesk/releases/latest | jq -r '.assets[] | select(.name | contains("x86_64.dmg")) | .browser_download_url'
-
