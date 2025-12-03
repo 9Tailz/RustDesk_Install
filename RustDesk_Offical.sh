@@ -4,7 +4,7 @@
 rustdesk_pw=("iamgay")
 
 # Get your config string from your Web portal and Fill Below
-rustdesk_cfg="9JSPn5mb6V1ShpUd1ZncUNWQ4R3RHNXTo1UMzdna4AHRx50ZHNTRF5UeMpnNjJiOikXZrJCLiIiOikGchJCLiITNuQDNuMTOucDNxIiOikXYsVmciwiIyUjL0QjLzkjL3QTMiojI0N3boJye"
+rustdesk_cfg=9JSPn5mb6V1ShpUd1ZncUNWQ4R3RHNXTo1UMzdna4AHRx50ZHNTRF5UeMpnNjJiOikXZrJCLiIiOikGchJCLiITNuQDNuMTOucDNxIiOikXYsVmciwiIyUjL0QjLzkjL3QTMiojI0N3boJye
 
 ################################## Please Do Not Edit Below This Line #########################################
 
@@ -80,11 +80,11 @@ fi
 rustdesk_id=$(rustdesk --get-id)
 
 # Apply new password to RustDesk
-rustdesk --password $rustdesk_pw &> /dev/null
+sudo rustdesk --password $rustdesk_pw &> /dev/null
 
-rustdesk --config $rustdesk_cfg
+sudo rustdesk --config $rustdesk_cfg
 
-systemctl restart rustdesk
+sudo systemctl restart rustdesk
 
 echo "..............................................."
 # Check if the rustdesk_id is not empty
