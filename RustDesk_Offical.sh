@@ -12,7 +12,7 @@ read -sp "Enter password for decryption: " password
 echo
 
 # Get your config string from your Web portal and Fill Below
-$rustdesk_cfg=echo "$encrypted_string" | openssl enc -aes-256-cbc -d -a -pbkdf2 -pass pass:"$password" 2>/dev/null
+$rustdesk_cfg=echo "$encrypted_string" | openssl enc -aes-256-cbc -d -a -pbkdf2 -pass "pass:$password" 2>/dev/null
 
 ################################## Please Do Not Edit Below This Line #########################################
 
