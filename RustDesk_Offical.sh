@@ -88,9 +88,9 @@ fi
 rustdesk_id=$(rustdesk --get-id)
 
 # Apply new password to RustDesk
-sudo rustdesk --password $rustdesk_pw &> /dev/null
+rustdesk --password $rustdesk_pw &> /dev/null
 
-sudo rustdesk --config $rustdesk_cfg
+rustdesk --config $rustdesk_cfg
 
 sudo systemctl restart rustdesk
 
