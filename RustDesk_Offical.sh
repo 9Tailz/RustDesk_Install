@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Assign a random value to the password variable
-$rustdesk_pw="1amGh0st1ine"
+echo "Enter the password:"
+read -s password
+echo 
 
-$encrypted_string="U2FsdGVkX1/Ign+br1E73Jez5YpnipPlBwpi8m5A1F/X4Pcihy+NpgpMBKl+ZLR2
-D3XbeoRlIGW4puEcNNvGFUT7i7Kq0I+U7t5rIxLOzMjXu3agmV29jW9M9cjsyjGh
-83zKE4NwLyVjb4j8yebJ0rQsv/d0h3XtI0fX/xeNkrO2K9OO1p/kEk7zbOvTSTqj
-TnYWBKKk9IDOthTeKfpkQMftevmCCydGXHwWjq1BrkI="
+rustdesk_cfg=$(openssl enc -aes-256-cbc -d -in secret.enc -base64 -pbkdf2 -pass "pass: $password" 2>/dev/null)
+rustdesk_pw=$(openssl enc -aes-256-cbc -d -in secret2.enc -base64 -pbkdf2 -pass "pass: $password" 2>/dev/null)
 
-read -sp "Enter password for decryption: " password
-echo
-
-# Get your config string from your Web portal and Fill Below
-$rustdesk_cfg=echo "$encrypted_string" | openssl enc -aes-256-cbc -d -a -pbkdf2 -pass "pass:$password" 2>/dev/null
+if [ $? -eq 0 ]; then
+    echo "Password Successfully."
+else
+    echo "Decryption failed. Please check your password."
+    exit 1
+fi
 
 ################################## Please Do Not Edit Below This Line #########################################
 
