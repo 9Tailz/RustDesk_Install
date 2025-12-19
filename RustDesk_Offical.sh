@@ -86,10 +86,10 @@ fi
 
 # Run the rustdesk command with --get-id and store the output in the rustdesk_id variable
 rustdesk_id=$(rustdesk --get-id)
-sleep  1
+
 # Apply new password to RustDesk
 rustdesk --password $rustdesk_pw &> /dev/null
-sleep  2
+sleep 2
 rustdesk --config $rustdesk_cfg
 sleep 2
 sudo systemctl restart rustdesk
