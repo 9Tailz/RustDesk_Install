@@ -85,10 +85,14 @@ rustdesk_id=$(rustdesk --get-id)
 
 # Apply new password to RustDesk
 rustdesk --password $rustdesk_pw &> /dev/null
-sleep 2
+echo "Password set..."
+sleep 3
 rustdesk --config $rustdesk_cfg
-sleep 2
+echo "Config Set"
+sleep 3
 systemctl restart rustdesk
+echo "Resetting Service"
+sleep 3
 
 echo "..............................................."
 # Check if the rustdesk_id is not empty
